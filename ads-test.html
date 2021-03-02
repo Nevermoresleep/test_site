@@ -1,0 +1,246 @@
+<html>
+<head>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script async src="//www.googletagservices.com/tag/js/gpt.js"></script>
+    <script async src="http://orbitwork.orbitsoft/users/neverov/Projects/Connector/Prebid/prebid.js"></script>
+	<p><a href="http://orbitwork.orbitsoft/users/neverov/Projects/Connector/ifame.html">Абсолютная ссылка</a></p>
+    <script>
+        var div_1_sizes = [
+            [300, 250],
+            [300, 600]
+        ];
+        var div_2_sizes = [
+            [728, 90],
+            [970, 250]
+        ];
+        var PREBID_TIMEOUT = 1000;
+        var FAILSAFE_TIMEOUT = 3000;
+
+        var adUnits = [
+            {
+                code: 'div-1',
+                mediaTypes: {
+                    banner: {
+                        sizes: [[300, 250]]
+                    }
+                },
+                bids: [
+                    {
+                        bidder: "h12media",
+                        params: {
+                            endpointdom: 'https://bidder.h12-media.com/prebid-test/',
+                            pubid: '123',
+                            size: '300x250',
+                        }
+                    },
+                    {
+                        bidder: 'appnexus',
+                        params: {
+                            placementId: 13144370
+                        }
+                    }
+                ]
+            },{
+                code: 'div-2',
+                mediaTypes: {
+                    banner: {
+                        sizes: [[728, 90]]
+                    }
+                },
+                bids: [
+                    {
+                        bidder: "h12media",
+                        params: {
+                            endpointdom: 'https://bidder.h12-media.com/prebid-test/',
+                            pubid: '123',
+                            placementid: '321'
+                        }
+                    },
+                    {
+                        bidder: 'appnexus',
+                        params: {
+                            placementId: 13144370
+                        }
+                    }
+                ]
+            }
+        ];
+
+        // var adUnits = [
+        //     {
+        //         code: 'div-1',
+        //         mediaTypes: {
+        //             banner: {
+        //                 sizes: div_1_sizes
+        //             }
+        //         },
+        //         bids: [{
+        //             bidder: 'h12media',
+        //             params: {
+        //                 placementid: 13144370,
+        //                 pubid: 333,
+        //                 size: '300x500',
+        //                 // endpointdom: 'https://bidder.hhh12-media.com/prebid/',
+        //             }
+        //         }]
+        //     },
+        //     {
+        //         code: 'div-2',
+        //         mediaTypes: {
+        //             banner: {
+        //                 sizes: div_2_sizes
+        //             }
+        //         },
+        //         bids: [{
+        //             bidder: 'h12media',
+        //             params: {
+        //                 placementId: 13144371,
+        //                 pubid: 333,
+        //             }
+        //         }]
+        //     }
+        // ];
+
+        // ======== DO NOT EDIT BELOW THIS LINE =========== //
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+        googletag.cmd.push(function() {
+            googletag.pubads().disableInitialLoad();
+        });
+
+        var pbjs = pbjs || {};
+        pbjs.que = pbjs.que || [];
+
+        pbjs.que.push(function() {
+            pbjs.setConfig({
+                consentManagement: {
+                    gdpr: {
+                        cmpApi: 'static',
+                        consentData: {
+                            getTCData: {
+                                tcString: 'COwK6gaOwK6gaFmAAAENAPCAAAAAAAAAAAAAAAAAAAAA.IFoEUQQgAIQwgIwQABAEAAAAOIAACAIAAAAQAIAgEAACEAAAAAgAQBAAAAAAAGBAAgAAAAAAAFAAECAAAgAAQARAEQAAAAAJAAIAAgAAAYQEAAAQmAgBC3ZAYzUw',
+                                gdprApplies: true
+                            }
+                        }
+                    },
+                    usp: {
+                        cmpApi: 'static',
+                        consentData: {
+                            getUSPData: {
+                                uspString: '1YYY333'
+                            }
+                        }
+                    }
+                },
+                userSync: {
+                    userIds: [
+                        {
+                            name: "criteo",
+                        },
+                        {
+                            name: 'fabrickId',
+                            params: {
+                                apiKey: '123456789', // provided to you by Neustar
+                                e: '31c5543c1734d25c7206f5fd591525d0295bec6fe84ff82f946a34fe970a1e66' // example hashed email address (sha256)
+                            },
+                            storage: {
+                                name: 'pbjs_fabrickId',
+                                type: 'cookie',
+                                expires: 7
+                            }
+                        }
+                    ],
+                    filterSettings: {
+                        iframe: {
+                            bidders: ['h12media'],
+                            filter: 'include'
+                        },
+                        image: {
+                            bidders: ['h12media'],
+                            filter: 'include'
+                        }
+                    },
+                    syncsPerBidder: 3, // and no more than 3 syncs at a time
+                    syncDelay: 6000, // 6 seconds after the auction
+                }
+            });
+            // pbjs.addAdUnits(adUnits);
+            // pbjs.requestBids({
+            //     bidsBackHandler: initAdserver,
+            //     timeout: PREBID_TIMEOUT
+            // });
+        });
+
+        function initAdserver() {
+            if (pbjs.initAdserverSet) return;
+            pbjs.initAdserverSet = true;
+            googletag.cmd.push(function() {
+                pbjs.que.push(function() {
+                    pbjs.setTargetingForGPTAsync();
+                    googletag.pubads().refresh();
+                });
+            });
+        }
+        // in case PBJS doesn't load
+        // setTimeout(function() {
+        //     initAdserver();
+        // }, FAILSAFE_TIMEOUT);
+
+        googletag.cmd.push(function() {
+            googletag.defineSlot('/19968336/header-bid-tag-0', div_1_sizes, 'div-1').addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+        googletag.cmd.push(function() {
+            googletag.defineSlot('/19968336/header-bid-tag-1', div_2_sizes, 'div-2').addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+
+        function startAds() {
+            pbjs.addAdUnits(adUnits);
+            pbjs.requestBids({
+                bidsBackHandler: initAdserver,
+                timeout: PREBID_TIMEOUT
+            });
+
+            // in case PBJS doesn't load
+            setTimeout(function() {
+                initAdserver();
+            }, FAILSAFE_TIMEOUT);
+        }
+
+    </script>
+</head>
+
+<body style='width:120%'>
+<h2>Basic Prebid.js Example</h2>
+<h5>Div-1</h5>
+<div id='div-1'>
+    <script type='text/javascript'>
+        googletag.cmd.push(function() {
+            googletag.display('div-1');
+        });
+
+    </script>
+</div>
+
+<br>
+
+<h5>Div-2</h5>
+<div id='div-2'>
+    <script type='text/javascript'>
+        googletag.cmd.push(function() {
+            googletag.display('div-2');
+        });
+
+    </script>
+</div>
+
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<span onclick="startAds()">Start Ads</span>
+</body>
+</html>
